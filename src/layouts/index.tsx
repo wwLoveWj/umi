@@ -114,7 +114,7 @@ const App: React.FC = (props) => {
     };
     getAllMenu(menus);
     // 拿到当前选中项的path路径进行组装面包屑配置
-    currentKeyPath.reverse().map((item: any, index: number) => {
+    currentKeyPath.map((item: any, index: number) => {
       // 找到与当前path匹配的router
       let titleObj: RouterItem = brr.find(
         (val: RouterItem) => val.key === currentKeyPath[index]
@@ -136,10 +136,10 @@ const App: React.FC = (props) => {
           };
     });
     setBreadcrumbItems([
-      {
-        path: "/",
-        title: <HomeOutlined />,
-      },
+      // {
+      //   path: "/",
+      //   title: <HomeOutlined />,
+      // },
       ...arr,
     ]);
   };
@@ -154,7 +154,6 @@ const App: React.FC = (props) => {
     };
     const onSelectMenu = ({ keyPath }: { keyPath: string[] }) => {
       setSaveKeyPath(keyPath);
-      keyPathMenu(keyPath);
     };
     return (
       <Sider
