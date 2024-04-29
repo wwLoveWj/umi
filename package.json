@@ -1,0 +1,31 @@
+{
+  "private": true,
+  "author": "ww",
+  "scripts": {
+    "dev": "umi dev",
+    "build": "umi build",
+    "postinstall": "umi setup",
+    "setup": "umi setup",
+    "start": "npm run dev",
+    "lint": "umi g tmp && yarn lint:js && yarn lint:style && yarn lint:prettier",
+    "lint:prettier": "prettier --check \"**/*\" --end-of-line auto",
+    "lint:fix": "eslint --fix --cache --ext .js,.jsx,.ts,.tsx --format=pretty ./src && npm run lint:style",
+    "lint:js": "eslint --cache --ext .js,.jsx,.ts,.tsx --format=pretty ./src",
+    "lint:style": "stylelint --fix \"src/**/*.less\""
+  },
+  "dependencies": {
+    "@ant-design/icons": "^5.3.6",
+    "antd": "^5.16.5",
+    "lodash": "^4.17.21",
+    "qiankun": "^2.10.16",
+    "umi": "^4.1.10"
+  },
+  "devDependencies": {
+    "@types/react": "^18.0.33",
+    "@types/react-dom": "^18.0.11",
+    "eslint": "^9.1.1",
+    "prettier": "^3.2.5",
+    "stylelint": "^16.4.0",
+    "typescript": "^5.0.3"
+  }
+}
