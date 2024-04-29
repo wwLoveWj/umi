@@ -16,6 +16,7 @@
   "dependencies": {
     "@ant-design/icons": "^5.3.6",
     "antd": "^5.16.5",
+    "axios": "^1.6.8",
     "lodash": "^4.17.21",
     "qiankun": "^2.10.16",
     "umi": "^4.1.10"
