@@ -1,6 +1,6 @@
 import { defineConfig } from "umi";
 import theme from "./theme";
-import { menus } from "./router";
+import { routes } from "./router";
 
 export default defineConfig({
   // 配置路由模式为hash模式，type可选 browser、hash 和 memory，默认browser
@@ -10,7 +10,7 @@ export default defineConfig({
   // devServer: {
   // 	port: 3000,
   // },
-  routes: menus,
+  routes,
   // 配置别名，对引用路径进行映射。
   alias: {
     "@utils": "/src/utils",

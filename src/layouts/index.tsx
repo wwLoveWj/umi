@@ -9,18 +9,23 @@ import {
 } from "@ant-design/icons";
 import type { MenuProps } from "antd";
 import { Breadcrumb, Layout, Menu, theme } from "antd";
-import { menus } from "../../config/router"; // 配置的菜单项
+import { routes } from "../../config/router"; // 配置的菜单项
 import _ from "lodash"; // 引入JS工具库
 import { useState, useEffect } from "react";
 
 const { Header, Content, Sider } = Layout;
 const { SubMenu } = Menu; // 子菜单
+// 获取到所有的菜单数据进行处理
+const menus = routes?.find((route) => route.path === "/")?.routes || [];
 
 interface RouterItem {
-  title: string;
-  key: string;
+  title?: string;
+  key?: string;
   path?: string;
   routes?: RouterItem[];
+  component?: any;
+  exact?: boolean;
+  redirect?: string;
 }
 const items1: MenuProps["items"] = ["1", "2", "3"].map((key) => ({
   key,
@@ -81,10 +86,7 @@ const App: React.FC = (props) => {
   const [breadcrumbItems, setBreadcrumbItems] = useState<
     { title: string; path: string }[]
   >([]); //面包屑的配置项
-  const [saveKeyPath, setSaveKeyPath] = useState<string[]>([
-    "good-quantity",
-    "good-manage",
-  ]); //存储选中的菜单路径集合
+  const [saveKeyPath, setSaveKeyPath] = useState<string[]>([]); //存储选中的菜单路径集合
 
   /**
    * 获取面包屑的配置数据
@@ -124,10 +126,16 @@ const App: React.FC = (props) => {
             title: titleObj?.title,
           };
     });
-    setBreadcrumbItems(arr);
+    setBreadcrumbItems([
+      {
+        path: "/",
+        title: <HomeOutlined />,
+      },
+      ...arr,
+    ]);
     // 这里是为了刷新回到首页的处理，暂时的，这里有问题
     // TODO:
-    history.push("/" + currentKeyPath.join("/"));
+    // history.push("/" + currentKeyPath.join("/"));
   };
   // 左侧菜单的menu结构数据
   function sideBarRender() {
@@ -151,7 +159,7 @@ const App: React.FC = (props) => {
         <Menu
           mode="inline"
           theme="dark"
-          defaultSelectedKeys={saveKeyPath}
+          selectedKeys={saveKeyPath}
           openKeys={stateOpenKeys}
           style={{ height: "100%", borderRight: 0 }}
           onOpenChange={onOpenChange}
@@ -164,8 +172,11 @@ const App: React.FC = (props) => {
   }
 
   useEffect(() => {
-    keyPathMenu(saveKeyPath);
-  }, []);
+    let result = location.hash.split("/");
+    result.shift();
+    setSaveKeyPath(result);
+    keyPathMenu(result);
+  }, [location.hash]);
   return (
     <Layout>
       <Header style={{ display: "flex", alignItems: "center" }}>
