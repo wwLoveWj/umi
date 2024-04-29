@@ -1,4 +1,4 @@
-import { Link, Outlet } from "umi";
+import { Link, Outlet, history } from "umi";
 import "./index.less";
 import React from "react";
 import {
@@ -125,6 +125,9 @@ const App: React.FC = (props) => {
           };
     });
     setBreadcrumbItems(arr);
+    // 这里是为了刷新回到首页的处理，暂时的，这里有问题
+    // TODO:
+    history.push("/" + currentKeyPath.join("/"));
   };
   // 左侧菜单的menu结构数据
   function sideBarRender() {
@@ -178,16 +181,11 @@ const App: React.FC = (props) => {
       <Layout>
         {sideBarRender()}
         <Layout>
-          {/* <Breadcrumb >
-            <Breadcrumb.Item>Home</Breadcrumb.Item>
-            <Breadcrumb.Item>List</Breadcrumb.Item>
-            <Breadcrumb.Item>App</Breadcrumb.Item>
-          </Breadcrumb> */}
           <Breadcrumb
-            style={{ padding: "8px 12px", background: "blue" }}
+            style={{ padding: "8px 12px", background: "#fff" }}
             items={breadcrumbItems}
           />
-          <Layout style={{ padding: "0 12px" }}>
+          <Layout style={{ padding: "6px 12px" }}>
             <Content
               style={{
                 margin: 0,
@@ -195,7 +193,7 @@ const App: React.FC = (props) => {
                 minHeight: 280,
                 // background: colorBgContainer,
                 borderRadius: borderRadiusLG,
-                background: "yellow",
+                background: "#fff",
                 height: "calc(100vh - 102px)",
               }}
             >
