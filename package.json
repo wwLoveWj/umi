@@ -21,8 +21,11 @@
     "cors": "^2.8.5",
     "express": "^4.19.2",
     "lodash": "^4.17.21",
+    "nprogress": "^0.2.0",
     "qiankun": "^2.10.16",
-    "umi": "^4.1.10"
+    "react-transition-group": "^4.4.5",
+    "umi": "^4.1.10",
+    "umi-plugin-nprogress": "^3.5.0"
   },
   "devDependencies": {
     "@types/react": "^18.0.33",

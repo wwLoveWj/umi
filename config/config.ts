@@ -1,6 +1,7 @@
 import { defineConfig } from "umi";
 import theme from "./theme";
 import { routes } from "./router";
+// import nprogress from "umi-plugin-nprogress";
 
 export default defineConfig({
   // 配置路由模式为hash模式，type可选 browser、hash 和 memory，默认browser
@@ -29,8 +30,11 @@ export default defineConfig({
   //    },
   //    如果你想要修改webpack配置，或使用各种webpack插件，可通过此配置来实现
   // chainWebpack(config, { webpack }) {
-  // 	config.plugin('XXPlugin').use(XXPlugin);
-  // }
+  //   config.plugin("nprogress").use(nprogress);
+  // },
+  // 用不了不知道为啥
+  // plugins: [["umi-plugin-nprogress", { color: "#007bff", showOnTop: true }]],
+  // plugins: ["umi-plugin-nprogress"],
   externals: {
     react: "var window.React",
     "react-dom": "var window.ReactDOM",

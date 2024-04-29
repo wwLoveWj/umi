@@ -12,6 +12,7 @@ import { Breadcrumb, Layout, Menu, theme } from "antd";
 import { routes } from "../../config/router"; // 配置的菜单项
 import _ from "lodash"; // 引入JS工具库
 import { useState, useEffect } from "react";
+// import { TransitionGroup, CSSTransition } from "react-transition-group";
 
 const { Header, Content, Sider } = Layout;
 const { SubMenu } = Menu; // 子菜单
@@ -20,6 +21,11 @@ const menus =
   routes
     ?.find((route) => route.path === "/")
     ?.routes?.filter((item) => !item.redirect) || [];
+// const routerType = {
+//   POP: "back",
+//   PUSH: "in",
+//   REPLACE: "in",
+// };
 
 interface RouterItem {
   title?: string;
@@ -207,6 +213,19 @@ const App: React.FC = (props) => {
                 height: "calc(100vh - 102px)",
               }}
             >
+              {/* <TransitionGroup
+                style={{ height: "100%" }}
+                className="transition_wrapper"
+                childFactory={(child) =>
+                  React.cloneElement(child, {
+                    classNames: routerType[history.action],
+                  })
+                }
+              >
+                <CSSTransition key={location.hash} appear timeout={3000}>
+                
+                </CSSTransition>
+              </TransitionGroup> */}
               <Outlet />
             </Content>
           </Layout>
