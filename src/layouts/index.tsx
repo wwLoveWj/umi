@@ -16,7 +16,10 @@ import { useState, useEffect } from "react";
 const { Header, Content, Sider } = Layout;
 const { SubMenu } = Menu; // 子菜单
 // 获取到所有的菜单数据进行处理
-const menus = routes?.find((route) => route.path === "/")?.routes || [];
+const menus =
+  routes
+    ?.find((route) => route.path === "/")
+    ?.routes?.filter((item) => !item.redirect) || [];
 
 interface RouterItem {
   title?: string;
@@ -133,9 +136,6 @@ const App: React.FC = (props) => {
       },
       ...arr,
     ]);
-    // 这里是为了刷新回到首页的处理，暂时的，这里有问题
-    // TODO:
-    // history.push("/" + currentKeyPath.join("/"));
   };
   // 左侧菜单的menu结构数据
   function sideBarRender() {
@@ -144,7 +144,6 @@ const App: React.FC = (props) => {
       "good-manage",
     ]);
     const onOpenChange: MenuProps["onOpenChange"] = (openKeys) => {
-      // history.push("/good-quantity");
       setStateOpenKeys(openKeys);
     };
     const onSelectMenu = ({ keyPath }: { keyPath: string[] }) => {

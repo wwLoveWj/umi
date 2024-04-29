@@ -7,6 +7,7 @@
     "postinstall": "umi setup",
     "setup": "umi setup",
     "start": "npm run dev",
+    "server": "nodemon ./server/index.js",
     "lint": "umi g tmp && yarn lint:js && yarn lint:style && yarn lint:prettier",
     "lint:prettier": "prettier --check \"**/*\" --end-of-line auto",
     "lint:fix": "eslint --fix --cache --ext .js,.jsx,.ts,.tsx --format=pretty ./src && npm run lint:style",
@@ -17,6 +18,8 @@
     "@ant-design/icons": "^5.3.6",
     "antd": "^5.16.5",
     "axios": "^1.6.8",
+    "cors": "^2.8.5",
+    "express": "^4.19.2",
     "lodash": "^4.17.21",
     "qiankun": "^2.10.16",
     "umi": "^4.1.10"

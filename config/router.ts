@@ -2,6 +2,7 @@ export const routes = [
   {
     path: "/login",
     component: "@/pages/login", // 加载login登录页面
+    layout: false,
   },
   {
     path: "/",
