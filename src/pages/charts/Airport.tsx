@@ -1,10 +1,10 @@
-import * as echarts from "echarts";
-import axios from "axios";
 import react, { useEffect } from "react";
+import * as echarts from "echarts";
 import request from "@/utils/request";
-const ROOT_PATH = "https://echarts.apache.org/examples";
+import styles from "./style.less";
 
 const Index = () => {
+  // 已选中的座位数据
   const takenSeatNames = ["26E", "26D", "26C", "25D", "23C", "21A", "20F"];
   function makeTakenRegions(takenSeatNames: string[]) {
     var regions = [];
@@ -30,6 +30,7 @@ const Index = () => {
     }
     return regions;
   }
+  //   飞机图的相关配置项
   const option = {
     tooltip: {},
     geo: {
@@ -69,12 +70,14 @@ const Index = () => {
   };
 
   const execEcharts = async () => {
+    // 初始化配置
     const chartContainer = document.getElementById("a1");
     const myChart = echarts.init(chartContainer, null, {
       renderer: "svg", // 必须使用 SVG 模式
       width: 600, // 需要指明高和宽
       height: 800,
     });
+    // 获取整个飞机选座的svg
     await request.get("/getOthersUrlSvg").then((res) => {
       //使用DOMParser将SVG字符串转换成DOM结构
       //   var parser = new DOMParser();
@@ -91,9 +94,9 @@ const Index = () => {
 
     // 创建和配置 ECharts 表格
     myChart.setOption(option);
+    // 当操作图形选中时的事件
     myChart.on("geoselectchanged", function (params: any) {
       const selectedNames: string[] = params.allSelected[0].name.slice();
-
       // Remove taken seats.
       for (var i = selectedNames.length - 1; i >= 0; i--) {
         if (takenSeatNames.indexOf(selectedNames[i]) >= 0) {
@@ -108,8 +111,8 @@ const Index = () => {
     execEcharts();
   }, []);
   return (
-    <div>
-      <div className="dsfjdk" id="a1"></div>
+    <div className={styles.airportBox}>
+      <div id="a1"></div>
       <p>Index</p>
     </div>
   );
