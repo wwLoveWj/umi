@@ -5,7 +5,7 @@ import styles from "./style.less";
 
 const Index = () => {
   // 已选中的座位数据
-  const takenSeatNames = ["26E", "26D", "26C", "25D", "23C", "21A", "20F"];
+  const takenSeatNames = ["27E", "26D", "26C", "25D", "23C", "21A", "20F"];
   function makeTakenRegions(takenSeatNames: string[]) {
     var regions = [];
     for (var i = 0; i < takenSeatNames.length; i++) {
@@ -13,17 +13,17 @@ const Index = () => {
         name: takenSeatNames[i],
         silent: true,
         itemStyle: {
-          color: "#bf0e08",
+          color: "red", //初始状态时的颜色
         },
         emphasis: {
           itemStyle: {
-            borderColor: "#aaa",
+            borderColor: "yellow", //hover座位时的边框色
             borderWidth: 1,
           },
         },
         select: {
           itemStyle: {
-            color: "#bf0e08",
+            color: "pink", //再次选择的背景色
           },
         },
       });
@@ -38,12 +38,12 @@ const Index = () => {
       roam: true,
       selectedMode: "multiple",
       layoutCenter: ["50%", "50%"],
-      layoutSize: "300%",
+      layoutSize: "300%", //整个机舱的放大缩小比例
       tooltip: {
         show: true,
       },
       itemStyle: {
-        color: "#fff",
+        color: "#fff", //未选择的座位
       },
       emphasis: {
         itemStyle: {
@@ -60,7 +60,7 @@ const Index = () => {
           color: "green",
         },
         label: {
-          show: false,
+          show: false, //是否显示座位号
           textBorderColor: "#fff",
           textBorderWidth: 2,
         },
@@ -84,6 +84,7 @@ const Index = () => {
       //   var svgDoc = parser.parseFromString(res.svg, "image/svg+xml");
       //   // 获取转换后的SVG元素
       //   var svgElement = svgDoc.getElementsByTagName("svg")[0];
+      //   将xml的string数据转化为dom结构数据
       var parser = new DOMParser();
       var xmlDoc = parser.parseFromString(res.svg, "text/xml");
       console.log(xmlDoc, typeof xmlDoc);
