@@ -23,11 +23,10 @@ app.get("/setOthersUrlSvg", (req, res) => {
   console.log("正在处理请求...");
   axios.get(ROOT_PATH + "/data/asset/geo/flight-seats.svg").then((resl) => {
     fs.writeFile("./public/airport.svg", resl.data, (err) => {
-      res.send(err);
-      return;
-    });
-    res.send({
-      message: "success write!",
+      if (err) res.send(err);
+      res.send({
+        message: "success write!",
+      });
     });
   });
 });
