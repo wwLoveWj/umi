@@ -15,7 +15,7 @@ export interface Result<T = any> {
   data: T;
 }
 const instance: AxiosInstance = axios.create({
-  baseURL: "/",
+  baseURL: "http://localhost:3007/",
   // `timeout` 指定请求超时的毫秒数(0 表示无超时时间)
   // 如果请求话费了超过 `timeout` 的时间，请求将被中断
   timeout: 60000,
