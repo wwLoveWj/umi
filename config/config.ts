@@ -17,11 +17,18 @@ export default defineConfig({
     "@utils": "/src/utils",
     "@assets": "/src/assets",
   },
+  plugins: [
+    "@umijs/plugins/dist/locale",
+    // ["umi-plugin-nprogress", { color: "#007bff", showOnTop: true }],
+    // '@umijs/plugins/dist/antd'
+    // ...
+  ],
+  locale: {},
   theme, //如果想要定制不同主题，可通过theme配置主题样式变量，变量为less变量
   // antd的配置
-  //   antd:{
-  //     dark:false // 开启暗黑主题
-  //   },
+  // antd: {
+  //   dark: false, // 开启暗黑主题
+  // },
   //   希望将 ClassName 类名变成驼峰命名形式，
   // 在具体页面中，className会被解析成驼峰形式
   // <div className={styles.barFoo}>Hello</div>; => <div class="bar-foo___{hash}">Hello</div>

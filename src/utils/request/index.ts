@@ -58,7 +58,6 @@ instance.interceptors.response.use(
   (response: AxiosResponse) => {
     const { code, message, data } = response.data;
     // 根据自定义错误码判断请求是否成功
-    debugger;
     if (code === 0) {
       // 将组件用的数据返回
       return data;
@@ -73,7 +72,6 @@ instance.interceptors.response.use(
     let message = "";
     // HTTP 状态码
     const status = error.response?.status;
-    debugger;
     switch (status) {
       case 401:
         message = "token 失效，请重新登录";

@@ -16,6 +16,7 @@
   },
   "dependencies": {
     "@ant-design/icons": "^5.3.6",
+    "@umijs/plugins": "^4.1.10",
     "antd": "^5.16.5",
     "axios": "^1.6.8",
     "cors": "^2.8.5",

@@ -13,6 +13,7 @@ import { routes } from "../../config/router"; // 配置的菜单项
 import _ from "lodash"; // 引入JS工具库
 import { useState, useEffect } from "react";
 // import { TransitionGroup, CSSTransition } from "react-transition-group";
+import LangChgIndex from "./components/LangChgIndex";
 
 const { Header, Content, Sider } = Layout;
 const { SubMenu } = Menu; // 子菜单
@@ -192,6 +193,7 @@ const App: React.FC = (props) => {
           items={items1}
           style={{ flex: 1, minWidth: 0 }}
         />
+        <LangChgIndex />
       </Header>
       <Layout>
         {sideBarRender()}

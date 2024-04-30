@@ -1,0 +1,6 @@
+{
+    // "plugins": [
+    //   ["import", { "libraryName": "antd", "style": true }]
+    // ]
+    "plugins": [["umi-plugin-nprogress", { "color": "#007bff", "showOnTop": true }]]
+  }
