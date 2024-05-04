@@ -1,8 +1,13 @@
 import { defineConfig } from "umi";
 import theme from "./theme";
 import { routes } from "./router";
+import Package from "../package.json";
 // import nprogress from "umi-plugin-nprogress";
+// import MonacoWebpackPlugin from 'monaco-editor-webpack-plugin';
 
+const PROJECT_CONFIG = {
+  NAME: Package.name,
+};
 export default defineConfig({
   // 配置路由模式为hash模式，type可选 browser、hash 和 memory，默认browser
   history: { type: "hash" }, //可通过history配置哈希路由，注意不要和hash配置混淆
@@ -42,6 +47,41 @@ export default defineConfig({
   // 用不了不知道为啥
   // plugins: [["umi-plugin-nprogress", { color: "#007bff", showOnTop: true }]],
   // plugins: ["umi-plugin-nprogress"],
+  // lessLoader: {
+  //   javascriptEnabled: true,
+  //   modifyVars: {
+  //     "@ant-prefix": PROJECT_CONFIG.NAME + "-ant", // ant前缀 样式隔离
+  //   },
+  // },
+  chainWebpack(memo /* ,  { webpack } */) {
+    // memo.plugin('monaco-editor-webpack-plugin').use(new MonacoWebpackPlugin());
+
+    // 内置的 svg Rule 添加 exclude
+    memo.module
+      .rule("svg")
+      .exclude.add(/iconsvg/)
+      .end();
+    // 添加 svg-sprite-loader Rule
+    memo.module
+      .rule("svg-sprite-loader")
+      .test(/.svg$/)
+      .include.add(/iconsvg/)
+      .end()
+      .use("svg-sprite-loader")
+      .loader("svg-sprite-loader");
+    // 添加 svgo Rule
+    memo.module
+      .rule("svgo")
+      .test(/.svg$/)
+      .include.add(/iconsvg/)
+      .end()
+      .use("svgo-loader")
+      .loader("svgo-loader")
+      .options({
+        // externalConfig 配置特殊不是相对路径，起始路径是根目录
+        externalConfig: "./src/assets/iconsvg/svgo.yml",
+      });
+  },
   externals: {
     react: "var window.React",
     "react-dom": "var window.ReactDOM",

@@ -70,7 +70,7 @@ export const routes = [
       { key: "collect-manage", title: "收藏管理", path: "/collect-manage" },
       {
         key: "echarts",
-        path: "/echart",
+        path: "/echarts",
         component: "./charts/Airport",
         title: "图表管理",
       },
