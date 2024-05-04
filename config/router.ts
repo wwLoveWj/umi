@@ -1,5 +1,21 @@
 export const routes = [
   {
+    path: "/exception",
+    layout: false,
+    routes: [
+      {
+        key: "404",
+        path: "/exception/404",
+        component: "./exception/404",
+      },
+      {
+        key: "403",
+        path: "/exception/403",
+        component: "./exception/403",
+      },
+    ],
+  },
+  {
     path: "/login",
     component: "@/pages/login", // 加载login登录页面
     layout: false,
@@ -62,7 +78,8 @@ export const routes = [
   },
   {
     path: "*",
-    component: "404",
+    component: "./exception/404",
+    redirect: "/exception/404",
     layout: false,
   },
 ];
